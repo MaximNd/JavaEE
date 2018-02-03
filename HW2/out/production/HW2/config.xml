@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <bean id="duke" class="main.java.Juggler">
+        <constructor-arg value="15"></constructor-arg>
+    </bean>
+
+    <bean id="shevchenko" class="main.java.Shevchenko"/>
+
+    <bean id="poeticDuke" class="main.java.PoeticJuggler">
+        <constructor-arg value = "15"/>
+        <constructor-arg ref="shevchenko"/>
+    </bean>
+
+    <bean id="saxophone" class="main.java.Saxophone"/>
+    <bean id="piano" class="main.java.Piano"/>
+
+    <bean id="kenny" class="main.java.Instrumentalist"
+        p:song="Jingle Bells"
+        p:instrument-ref="piano">
+        <!--<property name="song" value="Jingle Bells" />-->
+        <!--<property name="instrument" ref="piano" />-->
+    </bean>
+
+
+
+
+    <bean id="hank" class="main.java.OneManBand">
+        <property name="instruments">
+            <list>
+                <ref bean="saxophone"/>
+                <ref bean="piano"/>
+            </list>
+        </property>
+    </bean>
+
+
+
+
+</beans>

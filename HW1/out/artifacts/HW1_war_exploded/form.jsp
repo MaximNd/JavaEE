@@ -17,7 +17,7 @@
         <p>${login}</p>
     </div>
     <div>
-        <label>Password: <input type="text" name="password"></label>
+        <label>Password: <input type="password" name="password"></label>
         <p>${password}</p>
     </div>
     <div>
