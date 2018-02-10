@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+    <context:annotation-config/>
+
+    <bean id="hamlet"
+          class="main.java.Hamlet">
+        <constructor-arg index="0" value="Hamlet"/>
+        <constructor-arg index="1" value="1609"/>
+        <constructor-arg index="2" value="Tragedy"/>
+    </bean>
+
+    <bean id="romeo_and_juliet"
+          class="main.java.RomeoAndJuliet">
+        <constructor-arg index="0" value="RomeoAndJuliet"/>
+        <constructor-arg index="1" value="1597"/>
+        <constructor-arg index="2" value="Tragedy"/>
+    </bean>
+
+
+    <bean id="shakespeare" class="main.java.Shakespeare">
+    </bean>
+
+</beans>

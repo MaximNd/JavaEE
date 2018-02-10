@@ -24,7 +24,7 @@ public class Main {
         Performer performer4 = (Performer)context.getBean("kenny");
         performer4.perform();
         System.out.println("\n");
-        
+
         System.out.println("Впровадження списків\n");
         Performer performer3 = (Performer)context.getBean("hank");
         performer3.perform();
