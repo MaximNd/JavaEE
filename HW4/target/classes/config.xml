@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+     http://www.springframework.org/schema/beans
+     http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+     http://www.springframework.org/schema/context
+     http://www.springframework.org/schema/context/spring-context-3.0.xsd
+     http://www.springframework.org/schema/aop
+     http://www.springframework.org/schema/aop/spring-aop-3.0.xsd"
+       xmlns:aop="http://www.springframework.org/schema/aop">
+
+    <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+
+
+    <bean id="xmlAspect" class="xml.LoggingAspect"></bean>
+
+    <aop:config>
+        <aop:aspect ref="xmlAspect">
+            <aop:pointcut id="p1" expression="execution(* *xml.Student2.endExam())"></aop:pointcut>
+            <aop:before method="logBefore" pointcut-ref="p1"></aop:before>
+            <aop:after-returning returning="retVal" method="logAfter" pointcut-ref="p1"></aop:after-returning>
+        </aop:aspect>
+    </aop:config>
+
+    <bean id="petya" class="xml.Petya"></bean>
+
+
+    <bean id="annAspect" class="annotations.LoggingAspect"></bean>
+
+    <bean id="vasya" class="annotations.Vasya">
+        <constructor-arg value="5"/>
+    </bean>
+</beans>
