@@ -24,7 +24,7 @@ public class Student {
     @OneToMany
     @JoinColumn(name = "student_id")
     private List<Gradebook> gradebooks;
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "student_lecture", joinColumns = @JoinColumn(name = "student_id"), inverseJoinColumns = @JoinColumn(name = "lecture_id"))
     private List<Lecture> lectures;
 

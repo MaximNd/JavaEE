@@ -119,6 +119,8 @@ public class App{
         gr3.setStudent(student1);
         gr3.setTest(test3);
         System.out.println(gradebookWorker.addGradebook(gr3));
+
+        System.out.println(studentsWorker.findStudent(2).getLectures());
     }
 }
 
