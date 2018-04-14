@@ -1,0 +1,48 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+	<context:component-scan base-package="com.max0350.data"/>
+	<tx:annotation-driven/>
+
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+		<property name="url" value="jdbc:mysql://localhost:3306/testJDBC"/>
+		<property name="username" value="root"/>
+		<property name="password" value=""/>
+	</bean>
+
+	<bean id="jpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+		<property name="database" value="MYSQL"/>
+		<property name="showSql" value="true"/>
+		<property name="generateDdl" value="false"/>
+		<property name="databasePlatform" value="org.hibernate.dialect.MySQLDialect"/>
+	</bean>
+	<bean id="persistenceUnitManager"
+		  class="org.springframework.orm.jpa.persistenceunit.DefaultPersistenceUnitManager">
+	<property name="persistenceXmlLocations"><list>
+		<value>WEB-INF/persistence.xml</value>
+	</list></property>
+	</bean>
+
+	<bean id="emf" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="persistenceXmlLocation" value="WEB-INF/persistence.xml"/>
+		<property name="dataSource" ref="dataSource"/>
+		<property name="jpaVendorAdapter" ref="jpaVendorAdapter"/>
+	</bean>
+
+	<bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
+	<bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor"/>
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="emf"/>
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+
+	<bean class="com.max0350.worker.GradebookWorker" id="GradebookWorker"/>
+	<bean class="com.max0350.worker.LecturesWorker" id="LecturesWorker"/>
+	<bean class="com.max0350.worker.StudentsDataWorker" id="StudentsDataWorker"/>
+	<bean class="com.max0350.worker.StudentsWorker" id="StudentsWorker"/>
+	<bean class="com.max0350.worker.TeacherWorker" id="TeacherWorker"/>
+	<bean class="com.max0350.worker.TestWorker" id="TestWorker"/>
+</beans>
